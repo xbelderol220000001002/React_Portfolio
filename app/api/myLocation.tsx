@@ -114,7 +114,7 @@ const MyLocation: React.FC = () => {
         </TouchableOpacity>
         <View className="items-center">
           <Text className="text-blue-600 text-3xl font-bold">
-            Xan's Location
+            My Location
           </Text>
         </View>
         <Text className="text-black text-center mt-2 text-lg">
@@ -174,7 +174,20 @@ const MyLocation: React.FC = () => {
           <MapView
             ref={mapRef}
             style={{ flex: 1 }}
+            mapType="hybrid"
             region={location}
+            initialRegion={location}
+            onMapReady={() => {
+              if (mapRef.current) {
+                mapRef.current.animateCamera({
+                  center: location,
+                  heading: 0,
+                  pitch: 45,
+                  altitude: 2000,
+                  zoom: 15
+                });
+              }
+            }}
             showsUserLocation={true}
             showsMyLocationButton={true}
             zoomEnabled={true}
@@ -183,6 +196,10 @@ const MyLocation: React.FC = () => {
             pitchEnabled={true}
             showsCompass={true}
             showsPointsOfInterest={true}
+            showsBuildings={true}
+            showsIndoors={true}
+            showsTraffic={false}
+            showsIndoorLevelPicker={true}
             customMapStyle={[
               {
                 "elementType": "geometry",

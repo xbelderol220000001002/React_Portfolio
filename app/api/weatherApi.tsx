@@ -1,11 +1,15 @@
 // weatherApi.tsx
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  ActivityIndicator, Animated, Dimensions, Easing, ImageBackground,
+  ActivityIndicator,
+  Animated,
+  Dimensions,
+  Easing,
+  ImageBackground,
   KeyboardAvoidingView,
   Platform,
   RefreshControl,

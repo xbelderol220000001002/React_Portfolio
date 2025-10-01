@@ -1,2 +1,4 @@
 // Re-exporting from the actual implementation
-export { useBackgroundEarthquakeMonitor as default } from '../../../../app/api/earthquakeApi';
+import useBackgroundEarthquakeMonitor from '../../../../app/api/earthquakeApi';
+
+export default useBackgroundEarthquakeMonitor;

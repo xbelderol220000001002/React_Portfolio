@@ -95,23 +95,68 @@ export const GlobalEarthquakeAlert: React.FC = () => {
 
   const getAlertStyles = () => {
     switch (alertLevel) {
-      case 'danger': return 'bg-red-600 text-white border-red-800';
-      case 'high': return 'bg-orange-500 text-white border-orange-700';
-      case 'medium': return 'bg-yellow-500 text-black border-yellow-600';
-      case 'low': return 'bg-blue-500 text-white border-blue-700';
-      default: return 'bg-gray-200 text-black';
+      case 'danger': 
+        return { 
+          backgroundColor: '#dc2626',
+          borderColor: '#991b1b',
+          shadowColor: '#dc2626'
+        };
+      case 'high': 
+        return { 
+          backgroundColor: '#f97316',
+          borderColor: '#9a3412',
+          shadowColor: '#f97316'
+        };
+      case 'medium':
+        return { 
+          backgroundColor: '#facc15',
+          borderColor: '#ca8a04',
+          shadowColor: '#facc15'
+        };
+      case 'low':
+        return { 
+          backgroundColor: '#3b82f6',
+          borderColor: '#1d4ed8',
+          shadowColor: '#3b82f6'
+        };
+      default:
+        return { 
+          backgroundColor: '#e5e7eb',
+          borderColor: '#9ca3af',
+          shadowColor: '#000000'
+        };
     }
   };
 
+  const alertStyles = getAlertStyles();
+
   return (
-    <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-4 rounded-lg shadow-lg border-2 animate-pulse ${getAlertStyles()}`}>
-      <div className="flex items-center space-x-3">
-        <span className="text-xl">🌍</span>
-        <div>
-          <strong>Earthquake Alert:</strong> {currentAlert}
-        </div>
-      </div>
-    </div>
+    <View style={{
+      position: 'absolute',
+      top: 16,
+      left: '50%',
+      transform: [{ translateX: -150 }], // Adjusted to account for width
+      width: 300,
+      zIndex: 50,
+      padding: 12,
+      borderRadius: 8,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.3,
+      shadowRadius: 4,
+      elevation: 5,
+      borderWidth: 2,
+      backgroundColor: alertStyles.backgroundColor,
+      borderColor: alertStyles.borderColor,
+      shadowColor: alertStyles.shadowColor
+    }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Text style={{ fontSize: 20, marginRight: 8 }}>🌍</Text>
+        <Text style={{ color: alertLevel === 'medium' ? '#000000' : '#ffffff', flex: 1 }}>
+          <Text style={{ fontWeight: 'bold' }}>Earthquake Alert: </Text>
+          {currentAlert}
+        </Text>
+      </View>
+    </View>
   );
 };
 
